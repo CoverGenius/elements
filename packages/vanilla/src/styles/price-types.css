@@ -1,0 +1,7 @@
+.cge-price-block .cge-price-amount {
+  display: block;
+  font-size: var(--cge-price-block-font-size);
+}
+.cge-price-block .cge-price-label {
+  display: block;
+}

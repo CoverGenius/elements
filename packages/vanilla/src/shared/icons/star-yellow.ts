@@ -1,0 +1,1 @@
+export const ICON_STAR_YELLOW = `<svg width="100%" height="100%" viewBox="0 0 12 11" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.7063 0L7.11698 4.05836L11.4126 4.1459L7.98883 6.74164L9.23301 10.8541L5.7063 8.4L2.17959 10.8541L3.42376 6.74164L-4.00543e-05 4.1459L4.29561 4.05836L5.7063 0Z" fill="#F2B544"/></svg>`;

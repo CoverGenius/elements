@@ -1,0 +1,21 @@
+@covergenius/elements
+Copyright 2026 Cover Genius
+
+This product includes software developed at Cover Genius (https://covergenius.com/).
+
+Licensed under the Apache License, Version 2.0. See the LICENSE file.
+
+Trademarks and third-party marks
+
+The Cover Genius and XCover names, logos, and brand assets, including the
+XCover logo in packages/vanilla/src/shared/icons/xcover-logo.ts, are
+trademarks of Cover Genius Assets PTY LTD. Per Section 6 of the Apache
+License, no license to use these marks is granted other than as required for
+the use of this software. You may not use these marks to name, brand, or
+promote a fork or any derived product without separate written permission
+from Cover Genius.
+
+The Trustpilot name and mark, including the asset in
+packages/vanilla/src/shared/icons/trustpilot-tag.ts, belong to Trustpilot
+and are not licensed under this License. Their use is subject to
+Trustpilot's own terms.

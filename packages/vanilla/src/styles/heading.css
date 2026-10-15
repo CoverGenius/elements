@@ -1,0 +1,7 @@
+.cge-heading {
+  color: var(--cge-header-heading-color);
+  font-size: var(--cge-header-heading-size);
+  margin: 0;
+  font-weight: var(--cge-header-heading-font-weight);
+  line-height: 1.3;
+}

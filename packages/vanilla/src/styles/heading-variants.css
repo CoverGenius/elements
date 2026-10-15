@@ -1,0 +1,9 @@
+.cge-heading-header {
+  font-size: var(--cge-header-heading-size);
+  color: var(--cge-header-heading-color);
+}
+.cge-heading-section {
+  font-size: var(--cge-section-heading-size);
+  font-weight: var(--cge-section-heading-font-weight);
+  color: var(--cge-section-heading-color);
+}

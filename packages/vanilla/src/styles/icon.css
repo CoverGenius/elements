@@ -1,0 +1,6 @@
+.cge-icon {
+  display: inline-block;
+  width: var(--cge-icon-size);
+  height: var(--cge-icon-size);
+  color: var(--cge-icon-color, currentColor);
+}

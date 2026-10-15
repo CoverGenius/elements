@@ -1,0 +1,1 @@
+export const ICON_SHIELD = `<svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L4 5V11.09C4 16.14 7.41 20.85 12 22C16.59 20.85 20 16.14 20 11.09V5L12 2ZM12 11.99H18C17.47 16.11 15.07 19.78 12 20.93V12H6V6.3L12 3.19V11.99Z" fill="currentColor"/></svg>`;

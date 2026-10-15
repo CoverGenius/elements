@@ -1,0 +1,45 @@
+.cge-message {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-width: 1px;
+  border-style: solid;
+  padding: 9px;
+  border-radius: 4px;
+  font-size: calc(0.875 * var(--cge-font-size-base));
+  line-height: 1.5;
+}
+.cge-message-warning {
+  background-color: var(--cge-warning-panel-background-color);
+  border-color: var(--cge-warning-panel-border-color);
+  color: var(--cge-warning-panel-text-color);
+  border-radius: 1.75px;
+}
+.cge-message-warning .cge-message-text {
+  font-weight: 500;
+  line-height: 125%;
+}
+.cge-message-info {
+  background-color: var(--cge-info-panel-background-color);
+  border-color: var(--cge-info-panel-border-color);
+  color: var(--cge-info-panel-text-color);
+}
+.cge-message-required {
+  background-color: var(--cge-required-panel-background-color);
+  border-color: var(--cge-required-panel-border-color);
+  color: var(--cge-required-panel-text-color);
+}
+.cge-message-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.cge-message-title {
+  font-weight: 600;
+}
+.cge-message-icon {
+  display: flex;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}

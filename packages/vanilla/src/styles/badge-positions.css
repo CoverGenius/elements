@@ -1,0 +1,39 @@
+.cge-badge-resting-start,
+.cge-badge-resting-center,
+.cge-badge-resting-end {
+  position: absolute;
+  top: 0;
+  transform: translateY(-50%);
+}
+.cge-badge-resting-start {
+  left: 16px;
+}
+.cge-badge-resting-center {
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.cge-badge-resting-end {
+  right: 16px;
+}
+.cge-badge-above {
+  align-self: flex-start;
+}
+.cge-badge-below {
+  align-self: flex-start;
+}
+.cge-badge-inline-start {
+  flex-shrink: 0;
+}
+.cge-input-option .cge-input-option-above-responsive {
+  display: none;
+}
+@container (max-width: 480px) {
+  .cge-input-option .cge-input-option-above-responsive {
+    display: flex;
+  }
+
+  .cge-input-option .cge-input-option-header .cge-badge-inline-start,
+  .cge-input-option .cge-input-option-header .cge-badge-inline-end {
+    display: none;
+  }
+}

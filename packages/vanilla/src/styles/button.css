@@ -1,0 +1,77 @@
+.cge-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  border: 1px solid var(--cge-button-background-color);
+  border-radius: var(--cge-button-border-radius);
+  background-color: var(--cge-button-background-color);
+  color: var(--cge-button-text-color);
+  font-size: var(--cge-button-font-size);
+  font-weight: 600;
+  line-height: 1.4;
+  cursor: pointer;
+  font-family: inherit;
+  transition:
+    transform 0.15s ease,
+    filter 0.15s ease;
+}
+@media (hover: hover) {
+  .cge-button:hover {
+    background-color: var(--cge-button-hover-background-color);
+    border-color: var(--cge-button-hover-background-color);
+  }
+}
+.cge-button:active {
+  transform: scale(0.97);
+  filter: brightness(0.88);
+}
+.cge-button-hollow {
+  background-color: var(--cge-button-hollow-background-color);
+  border-color: var(--cge-button-background-color);
+  color: var(--cge-button-background-color);
+}
+@media (hover: hover) {
+  .cge-button-hollow:hover {
+    background-color: var(--cge-button-hollow-hover-background-color);
+    border-color: var(--cge-button-background-color);
+  }
+}
+.cge-button-label-selected {
+  display: none;
+  align-items: center;
+  gap: 8px;
+}
+.cge-button-check {
+  display: inline-flex;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+.cge-button-check svg {
+  width: 100%;
+  height: 100%;
+}
+.cge-button-check svg path {
+  fill: currentColor;
+}
+.cge-input-option:is(.cge-input-option-selected, [data-cg-selected]) .cge-button-has-selected {
+  background-color: var(--cge-button-selected-positive-background-color);
+  border-color: var(--cge-button-selected-positive-border-color);
+  color: var(--cge-button-selected-positive-text-color);
+}
+.cge-input-option[data-cg-role='decline']:is(.cge-input-option-selected, [data-cg-selected]) .cge-button-has-selected {
+  background-color: var(--cge-button-selected-negative-background-color);
+  border-color: var(--cge-button-selected-negative-border-color);
+  color: var(--cge-button-selected-negative-text-color);
+}
+.cge-input-option:is(.cge-input-option-selected, [data-cg-selected])
+  .cge-button-has-selected
+  .cge-button-label-resting {
+  display: none;
+}
+.cge-input-option:is(.cge-input-option-selected, [data-cg-selected])
+  .cge-button-has-selected
+  .cge-button-label-selected {
+  display: inline-flex;
+}

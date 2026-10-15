@@ -1,0 +1,18 @@
+/* Containment is on the panel so input_body options can react to the embedding width, not the viewport. */
+.cg-panel {
+  container-type: inline-size;
+  font-size: var(--cge-font-size-base);
+  display: flex;
+  flex-direction: column;
+  padding: var(--cge-panel-padding);
+  border: var(--cge-panel-border-width) solid var(--cge-panel-border-color);
+  border-radius: var(--cge-panel-border-radius);
+}
+
+.cge-section + .cge-section {
+  margin-top: var(--cge-panel-section-gap);
+}
+
+.cge-section-header + .cge-section-top-body {
+  margin-top: var(--cge-panel-header-gap);
+}

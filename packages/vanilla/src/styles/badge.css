@@ -1,0 +1,17 @@
+.cge-badge {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  height: 24px;
+  padding: 0 12px;
+  background-color: var(--cge-badge-background-color);
+  color: var(--cge-badge-text-color);
+  border-radius: var(--cge-badge-border-radius);
+  font-size: var(--cge-badge-font-size);
+  font-weight: var(--cge-badge-font-weight);
+  line-height: 1;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}

@@ -1,0 +1,5 @@
+.cge-terms-link {
+  color: var(--cge-link-color);
+  font-size: var(--cge-terms-link-font-size);
+  text-decoration: var(--cge-link-decoration);
+}

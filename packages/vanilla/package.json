@@ -1,0 +1,51 @@
+{
+  "name": "@covergenius/elements",
+  "version": "0.2.4",
+  "license": "Apache-2.0",
+  "description": "CG Elements core engine: registers <cg-elements>, renders offer presentation profiles (layout + theme), and owns interaction/events. Vanilla, framework-agnostic; no React/Vue/DOM-framework dependency.",
+  "type": "module",
+  "main": "./dist/cg-elements.cjs",
+  "module": "./dist/cg-elements.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/cg-elements.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/cg-elements.cjs"
+      }
+    },
+    "./loader.css": "./dist/loader.css"
+  },
+  "files": [
+    "dist",
+    "NOTICE"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "dev": "vite-node scripts/run-inline-theme-defaults.ts && vite build --watch --mode development",
+    "build": "vite-node scripts/run-inline-theme-defaults.ts && vite build",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CoverGenius/elements",
+    "directory": "packages/vanilla"
+  },
+  "homepage": "https://github.com/CoverGenius/elements#readme",
+  "bugs": {
+    "url": "https://github.com/CoverGenius/elements/issues"
+  },
+  "devDependencies": {
+    "happy-dom": "^20.11.6",
+    "vite": "^6.0.0",
+    "vite-plugin-dts": "^4.4.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

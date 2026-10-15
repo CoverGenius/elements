@@ -1,0 +1,130 @@
+.cge-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cge-list-default,
+.cge-list-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.cge-list-panel {
+  background-color: #fff9de;
+  border-radius: 4px;
+  padding: 12px;
+}
+.cge-list-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.cge-list-timeline {
+  display: flex;
+  flex-direction: column;
+}
+.cge-list-tick-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  list-style: none;
+}
+.cge-list-tick-content {
+  font-size: calc(0.875 * var(--cge-font-size-base));
+  font-weight: 400;
+  line-height: 1.5;
+}
+.cge-list-tick {
+  color: var(--cge-benefit-tick-color);
+  flex-shrink: 0;
+  display: inline-flex;
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+}
+.cge-list-tick-exclusion {
+  color: var(--cge-error-color);
+}
+.cge-list-tick svg {
+  width: 100%;
+  height: 100%;
+}
+.cge-list-pill {
+  background-color: var(--cge-benefit-pill-background-color);
+  color: var(--cge-benefit-pill-color);
+  border-radius: var(--cge-benefit-pill-border-radius);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  font-size: calc(0.75 * var(--cge-font-size-base));
+  font-weight: 600;
+}
+.cge-list-timeline-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  list-style: none;
+  position: relative;
+  padding-bottom: 16px;
+}
+.cge-list-timeline-item:last-child {
+  padding-bottom: 0;
+}
+.cge-list-timeline-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--cge-benefit-tick-color);
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+.cge-list-timeline-line {
+  position: absolute;
+  left: 3px;
+  top: 14px;
+  bottom: -6px;
+  width: 2px;
+  background-color: var(--cge-benefit-tick-color);
+}
+.cge-list-panel-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  list-style: none;
+}
+.cge-list-panel-item .cge-icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+.cge-list-panel-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.cge-list-panel-title {
+  font-weight: 700;
+  font-size: calc(0.875 * var(--cge-font-size-base));
+  line-height: 1.25;
+}
+.cge-list-panel-description {
+  font-size: calc(0.75 * var(--cge-font-size-base));
+  line-height: 1.25;
+  color: var(--cge-secondary-text-color);
+}
+.cge-list .cge-icon {
+  width: 30px;
+  height: 30px;
+}
+.cge-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.cge-list-heading {
+  font-size: calc(0.875 * var(--cge-font-size-base));
+  font-weight: 400;
+  margin: 0;
+  color: var(--cge-list-heading-color);
+}
