@@ -2,6 +2,19 @@
 
 All notable changes to `@covergenius/elements` are documented here.
 
+## [0.2.7] - 2026-10-26
+
+- added: `opt_in.align` (`start` | `center`, default `start`) sets the text alignment of the CTA option header; an unsupported value falls back to `start` without throwing
+- changed: with `opt_in.align: "center"`, a CTA option's price renders below the heading, centered, even when `opt_in.price` has `location: "inline_end"` or none
+- removed: `input_body.align` is no longer read, and the `input_body` layout type no longer declares it; the selection control edge is still set by `input_body.selection.location`
+- added: the sandbox presentation builder offers a Text align select under the opt-in node, and two CTA text alignment quick tests
+
+## [0.2.6] - 2026-10-26
+
+- added: With `debug: true`, every successful `render()` now logs `render #N on "<key>"` with `{ changed, products }`, so a re-render with an identical offer response is visible (`changed: false`) instead of silent
+- changed: Build tooling moves to `vite` 8.3.5 and `vite-node` 6.0.0 (root, vanilla, sandbox); the published bundles keep the same public exports, the CJS build keeps its `"use strict"` directive, and the type declarations gain only `SdkContext.debug`
+- changed: The public tree now declares `engines.node` `>=22.12`, the minimum for vite 8, and the root `package.json` declares `>=20.19 || >=22.12`
+
 ## [0.2.5] - 2026-10-20
 
 - changed: the hollow CTA style is now the secondary CTA style (class `cge-button-secondary`, variables `--cge-button-secondary-*`)

@@ -1,6 +1,6 @@
 {
   "name": "@covergenius/elements",
-  "version": "0.2.5",
+  "version": "0.2.7",
   "license": "Apache-2.0",
   "description": "CG Elements core engine: registers <cg-elements>, renders offer presentation profiles (layout + theme), and owns interaction/events. Vanilla, framework-agnostic; no React/Vue/DOM-framework dependency.",
   "type": "module",
@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "happy-dom": "^20.11.6",
-    "vite": "^6.0.0",
+    "vite": "^8.3.5",
     "vite-plugin-dts": "^4.4.0"
   },
   "publishConfig": {

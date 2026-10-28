@@ -100,7 +100,7 @@ describe('style unit policy (fitness function)', () => {
     const emValues = [
       ...Object.entries(internalThemeDefaults).map(([name, value]) => [name, value] as const),
       ...Object.entries(coverGeniusDefaults).map(([name, value]) => [name, value.light] as const),
-    ].filter(([, value]) => new RegExp(EM_UNIT.source).test(value));
+    ].filter(([, value]) => value.search(EM_UNIT) !== -1);
 
     expect(emValues).toEqual([]);
   });

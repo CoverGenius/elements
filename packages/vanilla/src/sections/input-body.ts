@@ -141,7 +141,7 @@ function buildHeaderTrailing(opt: InputBodyOption, priceElement: HTMLElement | u
 
   trailing.className = 'cge-input-option-header-trailing';
 
-  if (priceElement && (opt.price?.location ?? 'inline_end') === 'inline_end') {
+  if (priceElement) {
     trailing.appendChild(priceElement);
   }
 
@@ -202,12 +202,19 @@ function buildOption(
 
   const ctaButton = opt.control === 'cta' ? buildOptionButton(opt, selectionLocation) : undefined;
 
-  const priceElement = opt.price ? buildPrice(opt.price) : undefined;
+  // A centered CTA header has no end edge to hold an inline_end price, so the
+  // price moves below the heading and centers with it. Other rows keep their location.
+  const isCentered = opt.control === 'cta' && textAlign === 'center';
 
-  const priceLocation = opt.price?.location ?? 'inline_end';
+  const priceLocation = isCentered ? 'below' : (opt.price?.location ?? 'inline_end');
+
+  const priceElement = opt.price ? buildPrice(isCentered ? { ...opt.price, location: 'below' } : opt.price) : undefined;
+
+  if (isCentered) priceElement?.classList.add('cge-input-option-price-center');
+
+  const inlinePrice = priceLocation === 'inline_end' ? priceElement : undefined;
 
   if (opt.control === 'cta') {
-    const isCentered = textAlign === 'center';
     const header = document.createElement('div');
     header.className = isCentered
       ? 'cge-input-option-header cge-input-option-header-cta cge-input-option-header-center'
@@ -222,7 +229,7 @@ function buildOption(
       header.appendChild(buildOptionBadge(opt.badge));
     }
 
-    const trailing = buildHeaderTrailing(opt, priceElement);
+    const trailing = buildHeaderTrailing(opt, inlinePrice);
 
     if (trailing) header.appendChild(trailing);
 
@@ -241,7 +248,7 @@ function buildOption(
       header.appendChild(buildOptionBadge(opt.badge));
     }
 
-    const trailing = buildHeaderTrailing(opt, priceElement);
+    const trailing = buildHeaderTrailing(opt, inlinePrice);
 
     if (trailing) header.appendChild(trailing);
 

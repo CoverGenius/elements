@@ -320,31 +320,88 @@ describe('inputBodyBuilder adapter', () => {
       }
     });
 
-    it('ignores align for the control edge', () => {
-      for (const align of ['start', 'center', 'end']) {
-        const start = renderRow({ align, selection: { type: 'default', location: 'inline_start' } });
-        const end = renderRow({ align, selection: { type: 'default', location: 'inline_end' } });
+    describe('opt_in.align text alignment', () => {
+      const ctaRow = (optIn: Record<string, unknown>) =>
+        renderRow({ selection: { type: 'cta', location: 'inline_end' } }, optIn, { positive_cta: 'Add' });
 
-        expect(layoutOrder(start), `align=${align} inline_start`).toEqual(['control', 'content']);
-        expect(layoutOrder(end), `align=${align} inline_end`).toEqual(['content', 'control']);
-      }
-    });
+      it('centers the CTA option header for center', () => {
+        const option = ctaRow({ align: 'center' });
 
-    it('no longer reads align:end as the end edge when selection.location is absent', () => {
-      const option = renderRow({ align: 'end' });
+        expect(option.querySelector('.cge-input-option-header-center')).not.toBeNull();
+        expect(option.querySelector(`.${CONTROL}`)).toBeNull();
+      });
 
-      expect(layoutOrder(option)).toEqual(['control', 'content']);
-    });
+      it('keeps the header start-aligned for start and when align is absent', () => {
+        for (const optIn of [{ align: 'start' }, {}]) {
+          expect(ctaRow(optIn).querySelector('.cge-input-option-header-center')).toBeNull();
+        }
+      });
 
-    it('keeps align:center as text alignment only for cta rows', () => {
-      const option = renderRow(
-        { align: 'center', selection: { type: 'cta', location: 'inline_end' } },
-        {},
-        { positive_cta: 'Add' },
-      );
+      it('falls back to start for an unsupported value, without throwing', () => {
+        for (const align of ['end', 'left', 'nonsense', 3, null]) {
+          const option = ctaRow({ align });
 
-      expect(option.querySelector('.cge-input-option-header-center')).not.toBeNull();
-      expect(option.querySelector(`.${CONTROL}`)).toBeNull();
+          expect(option.querySelector('.cge-input-option-header-center'), `align=${String(align)}`).toBeNull();
+        }
+      });
+
+      describe('price placement under center', () => {
+        const TRAILING = '.cge-input-option-header-trailing';
+        const price = (option: HTMLElement) => option.querySelector('.cge-price') as HTMLElement;
+
+        it('moves an inline_end or default price below the heading and centers it', () => {
+          for (const location of [{ location: 'inline_end' }, {}]) {
+            const option = ctaRow({ align: 'center', price: { type: 'default', ...location } });
+
+            expect(option.querySelector(`${TRAILING} .cge-price`), JSON.stringify(location)).toBeNull();
+            expect(price(option).parentElement).toBe(option);
+            expect(price(option).classList.contains('cge-price-below')).toBe(true);
+            expect(price(option).classList.contains('cge-input-option-price-center')).toBe(true);
+          }
+        });
+
+        it('centers a price already configured below', () => {
+          const option = ctaRow({ align: 'center', price: { type: 'default', location: 'below' } });
+
+          expect(price(option).classList.contains('cge-input-option-price-center')).toBe(true);
+        });
+
+        it('keeps an inline_end price in the header for start alignment', () => {
+          const option = ctaRow({ align: 'start', price: { type: 'default', location: 'inline_end' } });
+
+          expect(option.querySelector(`${TRAILING} .cge-price`)).not.toBeNull();
+          expect(price(option).classList.contains('cge-input-option-price-center')).toBe(false);
+        });
+
+        it('leaves radio rows alone, where align has no effect', () => {
+          const option = renderRow(
+            { selection: { type: 'default', location: 'inline_start' } },
+            { align: 'center', price: { type: 'default', location: 'inline_end' } },
+          );
+
+          expect(option.querySelector(`${TRAILING} .cge-price`)).not.toBeNull();
+        });
+      });
+
+      it('no longer reads input_body.align', () => {
+        const option = renderRow(
+          { align: 'center', selection: { type: 'cta', location: 'inline_end' } },
+          {},
+          { positive_cta: 'Add' },
+        );
+
+        expect(option.querySelector('.cge-input-option-header-center')).toBeNull();
+      });
+
+      it('does not move the selection control edge', () => {
+        for (const align of ['start', 'center']) {
+          const start = renderRow({ selection: { type: 'default', location: 'inline_start' } }, { align });
+          const end = renderRow({ selection: { type: 'default', location: 'inline_end' } }, { align });
+
+          expect(layoutOrder(start), `align=${align} inline_start`).toEqual(['control', 'content']);
+          expect(layoutOrder(end), `align=${align} inline_end`).toEqual(['content', 'control']);
+        }
+      });
     });
 
     it('keeps the control outermost with inline_end badge and price present', () => {

@@ -8,7 +8,10 @@ function copyLoaderCss() {
   return {
     name: 'copy-loader-css',
     closeBundle() {
-      copyFileSync(resolve(__dirname, 'src/styles/loader.css'), resolve(__dirname, 'dist/loader.css'));
+      copyFileSync(
+        resolve(import.meta.dirname, 'src/styles/loader.css'),
+        resolve(import.meta.dirname, 'dist/loader.css'),
+      );
     },
   };
 }
@@ -23,7 +26,7 @@ export default defineConfig({
       // TypeScript reads index.d.ts as ESM, so the `require` condition needs its own .d.cts.
       // A verbatim copy is only valid while the declarations have no default export.
       afterBuild: () => {
-        copyFileSync(resolve(__dirname, 'dist/index.d.ts'), resolve(__dirname, 'dist/index.d.cts'));
+        copyFileSync(resolve(import.meta.dirname, 'dist/index.d.ts'), resolve(import.meta.dirname, 'dist/index.d.cts'));
       },
     }),
     copyLoaderCss(),
@@ -36,11 +39,16 @@ export default defineConfig({
       formats: ['es', 'cjs'],
     },
     sourcemap: false,
+    rolldownOptions: { output: { strict: true } },
   },
   test: {
     // Custom elements need a DOM. happy-dom is lighter/faster than jsdom and
     // handles customElements/HTMLElement for the SDK's element + resolver tests.
     environment: 'happy-dom',
+    // Mirrors the root vitest.config.ts. The public tree runs this package's own
+    // vitest, not the root one, so without it a console spy leaks across tests
+    // (rerender.spec.ts) and only the exported-tree self-test fails.
+    restoreMocks: true,
     // core/element.ts imports the build-time-generated stylesheet
     // (scripts/inline-theme-defaults.ts); this must exist before test
     // collection resolves that import. Running this package's own vitest

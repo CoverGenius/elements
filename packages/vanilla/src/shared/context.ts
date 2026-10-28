@@ -16,6 +16,7 @@ export interface SdkContext {
   readonly endpoints: { readonly telemetry: string; readonly assetBase: string };
   readonly currency: CurrencyFormatter;
   readonly logger: Logger;
+  readonly debug: boolean;
   readonly scheme: Scheme;
 }
 
@@ -58,5 +59,6 @@ export function resolveContext(config: RegisterElementsConfig): SdkContext {
     currency: makeCurrencyFormatter(config.currencyConfig),
     scheme: config.scheme ?? 'light',
     logger: makeLogger(config.debug ?? false),
+    debug: config.debug ?? false,
   });
 }

@@ -30,7 +30,7 @@ export type TrustpilotPanelLocation = 'inline_end' | 'below' | 'center';
 
 export type LogoLocation = 'inline_end' | 'below';
 
-export type InputBodyAlign = 'start' | 'center' | 'end';
+export type OptInAlign = 'start' | 'center';
 
 export interface LeafNode<TType extends NodeType = 'default'> {
   type: TType;
@@ -94,6 +94,7 @@ export interface TextDisclaimerNode extends LeafNode<'default' | 'text'> {
 export type DisclaimerNode = HtmlDisclaimerNode | TextDisclaimerNode;
 
 export interface OptInNode extends LeafNode<'default' | 'card'> {
+  align?: OptInAlign;
   heading?: LeafNode;
   description?: LeafNode;
   badge?: OptInBadgeNode;
@@ -131,7 +132,6 @@ export interface TopBodyNode extends TermsLinkHostNode {
 }
 
 export interface InputBodyNode extends LeafNode {
-  align?: InputBodyAlign;
   rule?: string;
   aggregate_products?: boolean;
   selection?: SelectionNode;

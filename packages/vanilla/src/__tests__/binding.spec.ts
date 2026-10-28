@@ -592,14 +592,14 @@ describe('bindSection', () => {
       });
     });
 
-    it('ignores scalar layout fields such as align', () => {
-      const inputBody = node({ align: 'right', opt_in: { type: 'card', heading: { type: 'default' } } });
+    it('ignores scalar layout fields such as opt_in.align', () => {
+      const inputBody = node({ opt_in: { type: 'card', align: 'center', heading: { type: 'default' } } });
       const o = offer({ products: [quote('q1')], content: { products: [{ id: 'q1', title: 'Plan A' }] } });
 
       const bound = bindSection('input_body', inputBody, o, ctx());
 
       expect(entries(bound.opt_in).heading).toEqual({ kind: 'text', value: 'Plan A' });
-      expect(bound.align).toBeUndefined();
+      expect(entries(bound.opt_in)).not.toHaveProperty('align');
     });
   });
 

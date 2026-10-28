@@ -52,6 +52,14 @@ export function ensureContainer(key: string): Container {
   return container;
 }
 
+function fingerprint(response: OfferResponse): string | null {
+  try {
+    return JSON.stringify(response);
+  } catch {
+    return null;
+  }
+}
+
 function selectionSurvives(selection: StoredOption, response: OfferResponse): boolean {
   if (selection.productIds.length > 0) {
     const offered = new Set(response.products?.map((p) => p.id));
@@ -78,6 +86,8 @@ function createContainer(key: string): Container {
     required = false,
     client: Client | null = null,
     reflected: ContainerState | null = null,
+    renderCount = 0,
+    lastFingerprint: string | null = null,
     readyEmitted = false,
     unmounted = false;
 
@@ -157,6 +167,19 @@ function createContainer(key: string): Container {
       this.setState({ status: 'rendered', dom: result.dom });
 
       paintSelection();
+
+      if (ctx.debug) {
+        const next = fingerprint(response);
+
+        renderCount += 1;
+
+        ctx.logger.debug(`render #${renderCount} on "${key}"`, {
+          changed: next === null || next !== lastFingerprint,
+          products: response.products?.length ?? 0,
+        });
+
+        lastFingerprint = next;
+      }
     },
 
     setState(next) {

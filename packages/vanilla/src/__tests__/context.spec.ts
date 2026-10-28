@@ -73,7 +73,7 @@ describe('resolveContext', () => {
   it('exposes only the resolved SDK settings', () => {
     const context = resolveContext({ environment: 'production' });
 
-    expect(Object.keys(context).sort()).toEqual(['currency', 'endpoints', 'environment', 'logger', 'scheme']);
+    expect(Object.keys(context).sort()).toEqual(['currency', 'debug', 'endpoints', 'environment', 'logger', 'scheme']);
   });
 
   it.each(['staging', 'sandbox', 'production'] as const)('resolves endpoints for %s environment', (environment) => {

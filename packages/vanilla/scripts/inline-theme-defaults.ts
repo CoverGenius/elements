@@ -94,6 +94,8 @@ const REM_VALUE = /(?<![\w.-])(-?\d*\.?\d+)rem\b/g;
 const STRAY_REM = /[\d.]+rem\b/g;
 const HAS_REM = /[\d.]+rem\b/;
 
+const PROPERTY_NAME = /^[a-zA-Z-]+$/;
+
 type Consumer = 'text' | 'geometry';
 
 // Blanks comments to spaces so offsets stay valid for the declaration lookback.
@@ -107,7 +109,11 @@ function consumingProperty(blanked: string, offset: number): string | undefined 
   const before = blanked.slice(0, offset);
   const start = Math.max(before.lastIndexOf(';'), before.lastIndexOf('{'), before.lastIndexOf('}')) + 1;
 
-  return /^\s*([a-zA-Z-]+)\s*:/.exec(before.slice(start))?.[1]?.toLowerCase();
+  const declaration = before.slice(start).trimStart();
+  const colon = declaration.indexOf(':');
+  const name = colon === -1 ? '' : declaration.slice(0, colon).trimEnd();
+
+  return PROPERTY_NAME.test(name) ? name.toLowerCase() : undefined;
 }
 
 // Text sizes anchor to the font-size base; every other length becomes an

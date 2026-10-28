@@ -187,7 +187,8 @@
   flex-direction: column;
   align-items: center;
 }
-.cge-input-option-price-center {
+.cge-price.cge-input-option-price-center {
+  align-items: center;
   text-align: center;
 }
 .cge-input-option-price {

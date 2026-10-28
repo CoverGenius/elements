@@ -84,7 +84,6 @@ describe('input_body section walk & discovery', () => {
       const layout = {
         input_body: {
           type: 'default',
-          align: 'left',
           selection: { type: 'default' },
           opt_in: { type: 'default', heading: { type: 'default' } },
         },
@@ -309,7 +308,6 @@ describe('input_body section walk & discovery', () => {
         header: { type: 'default', heading: { type: 'default' } },
         input_body: {
           type: 'default',
-          align: 'left',
           selection: { type: 'default' },
           opt_in: { type: 'default', heading: { type: 'default' }, price: { type: 'default' } },
           opt_out: { type: 'default', heading: { type: 'default' } },

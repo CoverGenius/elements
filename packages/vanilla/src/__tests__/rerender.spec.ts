@@ -367,3 +367,50 @@ describe('re-render: integration checkpoint', () => {
     expect(optionControls(other)[0].checked).toBe(true);
   });
 });
+
+describe('re-render: debug logging', () => {
+  const renderLogs = (spy: { mock: { calls: unknown[][] } }) =>
+    spy.mock.calls.filter((c) => String(c[1]).startsWith('render #'));
+
+  it('logs every render with debug on, flagging an identical re-render as unchanged', () => {
+    const spy = vi.spyOn(console, 'debug').mockImplementation(() => {});
+    mount('rr-log');
+    const client = ensureContainer('rr-log').getClient();
+
+    client.render(offer(['q1', 'q2']));
+    client.render(offer(['q1', 'q2']));
+    client.render(offer(['q1']));
+
+    expect(renderLogs(spy).map((c) => [c[1], c[2]])).toEqual([
+      ['render #1 on "rr-log"', { changed: true, products: 2 }],
+      ['render #2 on "rr-log"', { changed: false, products: 2 }],
+      ['render #3 on "rr-log"', { changed: true, products: 1 }],
+    ]);
+  });
+
+  it('stays silent with debug off', () => {
+    setContext(DEFAULT_TAG_NAME, resolveContext({ environment: 'sandbox', debug: false }));
+    const spy = vi.spyOn(console, 'debug').mockImplementation(() => {});
+    mount('rr-log-off');
+    const client = ensureContainer('rr-log-off').getClient();
+
+    client.render(offer(['q1']));
+    client.render(offer(['q1']));
+
+    expect(spy).not.toHaveBeenCalled();
+  });
+
+  it('reports an unserialisable response as changed instead of throwing', () => {
+    const spy = vi.spyOn(console, 'debug').mockImplementation(() => {});
+    mount('rr-log-cycle');
+    const client = ensureContainer('rr-log-cycle').getClient();
+    const cyclic = offer(['q1']) as unknown as Record<string, unknown>;
+    cyclic.self = cyclic;
+
+    expect(() => {
+      client.render(cyclic as unknown as OfferResponse);
+      client.render(cyclic as unknown as OfferResponse);
+    }).not.toThrow();
+    expect(renderLogs(spy).map((c) => (c[2] as { changed: boolean }).changed)).toEqual([true, true]);
+  });
+});

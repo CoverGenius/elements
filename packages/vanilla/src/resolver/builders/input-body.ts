@@ -93,7 +93,7 @@ export const inputBodyBuilder: NodeBuilder<InputBodyNode> = ({ node, content, se
   return buildInputBody({
     options,
     layout: isCardLayout ? 'side_by_side' : 'stacked',
-    textAlign: node.align === 'center' ? 'center' : 'start',
+    textAlign: node.opt_in?.align === 'center' ? 'center' : 'start',
     selectionLocation: node.selection?.location,
     multiple,
     maxSelect: selectionBehavior?.maxSelect,
