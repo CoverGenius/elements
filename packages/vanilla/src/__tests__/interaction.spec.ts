@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi, type Mock } from 'vitest';
 import { bindInteraction, type InteractionSink } from '../resolver/interaction';
 
 // The delegated listener is exercised against hand-built DOM, no element or shadow
@@ -6,9 +6,9 @@ import { bindInteraction, type InteractionSink } from '../resolver/interaction';
 // records the semantic intents; reactions are asserted on the DOM directly.
 
 function sink(): InteractionSink & {
-  select: ReturnType<typeof vi.fn>;
-  toggle: ReturnType<typeof vi.fn>;
-  decline: ReturnType<typeof vi.fn>;
+  select: Mock<InteractionSink['select']>;
+  toggle: Mock<InteractionSink['toggle']>;
+  decline: Mock<InteractionSink['decline']>;
 } {
   return { select: vi.fn(), toggle: vi.fn(), decline: vi.fn() };
 }

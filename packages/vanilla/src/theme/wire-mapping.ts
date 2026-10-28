@@ -384,15 +384,15 @@ const WIRE_MAPPING: Record<ThemableVariable, MappingRow> = {
     value: sdkOriginatedDefaults.buttonHoverBackgroundColor ?? '',
     notes: 'The gui primary hover token is the yellow-CTA family, so this is authored.',
   },
-  buttonHollowBackgroundColor: {
+  buttonSecondaryBackgroundColor: {
     source: null,
     outcome: 'sdk-originated',
-    value: sdkOriginatedDefaults.buttonHollowBackgroundColor ?? '',
+    value: sdkOriginatedDefaults.buttonSecondaryBackgroundColor ?? '',
   },
-  buttonHollowHoverBackgroundColor: {
+  buttonSecondaryHoverBackgroundColor: {
     source: null,
     outcome: 'sdk-originated',
-    value: sdkOriginatedDefaults.buttonHollowHoverBackgroundColor ?? '',
+    value: sdkOriginatedDefaults.buttonSecondaryHoverBackgroundColor ?? '',
   },
   buttonSelectedPositiveBackgroundColor: {
     source: null,

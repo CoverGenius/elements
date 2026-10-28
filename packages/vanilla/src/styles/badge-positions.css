@@ -27,7 +27,19 @@
 .cge-input-option .cge-input-option-above-responsive {
   display: none;
 }
+.cge-section-header .cge-header-badge-above-responsive {
+  display: none;
+}
 @container (max-width: 480px) {
+  .cge-section-header .cge-header-badge-above-responsive {
+    display: flex;
+  }
+
+  .cge-section-header .cge-header-row .cge-badge-inline-start,
+  .cge-section-header .cge-header-row .cge-badge-inline-end {
+    display: none;
+  }
+
   .cge-input-option .cge-input-option-above-responsive {
     display: flex;
   }

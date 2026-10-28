@@ -1,6 +1,6 @@
 {
   "name": "@covergenius/elements",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "license": "Apache-2.0",
   "description": "CG Elements core engine: registers <cg-elements>, renders offer presentation profiles (layout + theme), and owns interaction/events. Vanilla, framework-agnostic; no React/Vue/DOM-framework dependency.",
   "type": "module",

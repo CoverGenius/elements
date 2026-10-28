@@ -26,14 +26,14 @@
   transform: scale(0.97);
   filter: brightness(0.88);
 }
-.cge-button-hollow {
-  background-color: var(--cge-button-hollow-background-color);
+.cge-button-secondary {
+  background-color: var(--cge-button-secondary-background-color);
   border-color: var(--cge-button-background-color);
   color: var(--cge-button-background-color);
 }
 @media (hover: hover) {
-  .cge-button-hollow:hover {
-    background-color: var(--cge-button-hollow-hover-background-color);
+  .cge-button-secondary:hover {
+    background-color: var(--cge-button-secondary-hover-background-color);
     border-color: var(--cge-button-background-color);
   }
 }

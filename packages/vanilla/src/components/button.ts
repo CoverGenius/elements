@@ -2,7 +2,7 @@ import { ICON_REGISTRY } from '../shared/icon-registry';
 
 export interface ButtonConfig {
   label: string;
-  hollow?: boolean;
+  variant?: 'primary' | 'secondary';
   selectedLabel?: string;
 }
 
@@ -21,9 +21,9 @@ function buildSelectedLabel(selectedLabel: string): HTMLElement {
   return el;
 }
 
-export function buildButton({ label, hollow = false, selectedLabel }: ButtonConfig): HTMLElement {
+export function buildButton({ label, variant = 'primary', selectedLabel }: ButtonConfig): HTMLElement {
   const el = document.createElement('button');
-  el.className = `cge-button${hollow ? ' cge-button-hollow' : ''}`;
+  el.className = `cge-button${variant === 'secondary' ? ' cge-button-secondary' : ''}`;
   el.type = 'button';
 
   if (!selectedLabel) {

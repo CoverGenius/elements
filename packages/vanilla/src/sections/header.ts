@@ -21,6 +21,12 @@ export function buildHeader({ heading, icon, badge }: HeaderConfig): HTMLElement
     el.appendChild(buildBadge({ label: badge.label, type: 'pill', location }));
   }
 
+  if (badge && location !== 'above') {
+    const aboveCopy = buildBadge({ label: badge.label, type: 'pill', location: 'above' });
+    aboveCopy.classList.add('cge-header-badge-above-responsive');
+    el.appendChild(aboveCopy);
+  }
+
   const row = document.createElement('div');
   row.className = 'cge-header-row';
 

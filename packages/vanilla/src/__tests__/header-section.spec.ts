@@ -96,6 +96,38 @@ describe('buildHeader', () => {
     expect(badge.classList.contains('cge-header-badge-end')).toBe(true);
   });
 
+  it.each(['inline_start', 'inline_end'] as const)(
+    'adds a hidden above copy before the row when location is %s',
+    (location) => {
+      // Arrange
+      const config = { heading: 'Your cover', badge: { label: 'New', location } };
+
+      // Act
+      const el = buildHeader(config);
+
+      // Assert
+      const copy = el.querySelector(':scope > .cge-header-badge-above-responsive') as HTMLElement;
+      expect(copy).not.toBeNull();
+      expect(copy.textContent).toBe('New');
+      expect(copy.classList.contains('cge-badge-above')).toBe(true);
+      expect(copy.classList.contains('cge-header-badge-end')).toBe(false);
+      expect(el.children[0]).toBe(copy);
+      expect(el.querySelector('.cge-header-row .cge-header-badge-above-responsive')).toBeNull();
+    },
+  );
+
+  it('adds no above copy when location is above', () => {
+    // Arrange
+    const config = { heading: 'Your cover', badge: { label: 'New', location: 'above' as const } };
+
+    // Act
+    const el = buildHeader(config);
+
+    // Assert
+    expect(el.querySelector('.cge-header-badge-above-responsive')).toBeNull();
+    expect(el.querySelectorAll('.cge-badge')).toHaveLength(1);
+  });
+
   it('renders no badge when not configured', () => {
     // Arrange
     const config = { heading: 'Your cover' };

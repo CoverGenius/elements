@@ -44,7 +44,7 @@ export interface InputBodyOption {
   collapsed?: boolean;
   price?: PriceConfig;
   buttonLabel?: string;
-  buttonHollow?: boolean;
+  buttonVariant?: 'primary' | 'secondary';
   buttonSelectedLabel?: string;
 }
 
@@ -124,7 +124,7 @@ function buildOptionButton(
 
   const button = buildButton({
     label: opt.buttonLabel,
-    hollow: opt.buttonHollow ?? opt.decline,
+    variant: opt.buttonVariant ?? (opt.decline ? 'secondary' : 'primary'),
     selectedLabel: opt.buttonSelectedLabel,
   });
   button.dataset[CG_DATASET.role] = opt.decline ? CG_ROLE.decline : CG_ROLE.submit;

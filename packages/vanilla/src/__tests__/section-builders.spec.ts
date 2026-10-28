@@ -68,7 +68,7 @@ describe('section builder adapters', () => {
         ),
       );
 
-      const badge = el.querySelector('.cge-badge') as HTMLElement;
+      const badge = el.querySelector('.cge-header-row .cge-badge') as HTMLElement;
       expect(badge.classList.contains('cge-header-badge-end')).toBe(true);
     });
   });

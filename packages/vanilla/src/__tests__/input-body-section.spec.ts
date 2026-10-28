@@ -60,7 +60,7 @@ describe('buildInputBody', () => {
 
     it('renders CTA options with button', () => {
       // Arrange
-      const config = { options: [option({ control: 'cta', buttonLabel: 'Add cover', buttonHollow: true })] };
+      const config = { options: [option({ control: 'cta', buttonLabel: 'Add cover', buttonVariant: 'secondary' })] };
 
       // Act
       const el = buildInputBody(config);
@@ -73,7 +73,7 @@ describe('buildInputBody', () => {
       expect(el.querySelector('input')).toBeNull();
       expect(button).not.toBeNull();
       expect(button?.textContent).toBe('Add cover');
-      expect(button?.className).toContain('cge-button-hollow');
+      expect(button?.className).toContain('cge-button-secondary');
       expect(button?.getAttribute(CG_ATTR.role)).toBe(CG_ROLE.submit);
       expect(button?.getAttribute(CG_ATTR.productIds)).toBe('product-1');
       expect(button?.getAttribute(CG_ATTR.optionId)).toBe('opt_in_1');
@@ -164,7 +164,7 @@ describe('buildInputBody', () => {
       expect(resting.querySelector('.cge-input-option-above-responsive')).toBeNull();
     });
 
-    it('keeps a decline CTA primary when buttonHollow is explicitly false', () => {
+    it('keeps a decline CTA primary when buttonVariant is explicitly primary', () => {
       const el = buildInputBody({
         options: [
           option({
@@ -173,15 +173,15 @@ describe('buildInputBody', () => {
             optionId: 'opt_out',
             productIds: [],
             buttonLabel: 'No',
-            buttonHollow: false,
+            buttonVariant: 'primary',
           }),
         ],
       });
 
-      expect(el.querySelector('button')?.classList.contains('cge-button-hollow')).toBe(false);
+      expect(el.querySelector('button')?.classList.contains('cge-button-secondary')).toBe(false);
     });
 
-    it('defaults a decline CTA to the hollow (secondary) style, opt_in stays primary', () => {
+    it('defaults a decline CTA to the secondary style, opt_in stays primary', () => {
       const el = buildInputBody({
         options: [
           option({ control: 'cta', buttonLabel: 'Add cover' }),
@@ -191,8 +191,8 @@ describe('buildInputBody', () => {
       const submit = el.querySelector(`button[${CG_ATTR.role}="${CG_ROLE.submit}"]`);
       const decline = el.querySelector(`button[${CG_ATTR.role}="${CG_ROLE.decline}"]`);
 
-      expect(submit?.classList.contains('cge-button-hollow')).toBe(false);
-      expect(decline?.classList.contains('cge-button-hollow')).toBe(true);
+      expect(submit?.classList.contains('cge-button-secondary')).toBe(false);
+      expect(decline?.classList.contains('cge-button-secondary')).toBe(true);
     });
 
     it('renders resting and selected labels with a check icon when a selected label is given', () => {
