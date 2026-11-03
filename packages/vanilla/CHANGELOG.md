@@ -2,6 +2,10 @@
 
 All notable changes to `@covergenius/elements` are documented here.
 
+## [0.2.8] - 2026-11-03
+
+- changed: updated development dependencies (happy-dom 21.0.4, fast-uri 3.1.9) to clear open security advisories.
+
 ## [0.2.7] - 2026-10-26
 
 - added: `opt_in.align` (`start` | `center`, default `start`) sets the text alignment of the CTA option header; an unsupported value falls back to `start` without throwing

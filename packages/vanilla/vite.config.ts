@@ -42,18 +42,11 @@ export default defineConfig({
     rolldownOptions: { output: { strict: true } },
   },
   test: {
-    // Custom elements need a DOM. happy-dom is lighter/faster than jsdom and
-    // handles customElements/HTMLElement for the SDK's element + resolver tests.
     environment: 'happy-dom',
-    // Mirrors the root vitest.config.ts. The public tree runs this package's own
-    // vitest, not the root one, so without it a console spy leaks across tests
-    // (rerender.spec.ts) and only the exported-tree self-test fails.
     restoreMocks: true,
-    // core/element.ts imports the build-time-generated stylesheet
-    // (scripts/inline-theme-defaults.ts); this must exist before test
-    // collection resolves that import. Running this package's own vitest
-    // (this config) or the workspace root's (vitest.config.ts, what CI's
-    // root test/test:ci scripts use) both need it, so both configs set it.
+    // CI containers often report more CPUs than they can use.
+    maxWorkers: process.env.CI === 'true' ? 3 : undefined,
+    // Generates the inlined theme stylesheet that src/core/element.ts imports.
     globalSetup: ['./scripts/vitest-global-setup.ts'],
   },
 });
