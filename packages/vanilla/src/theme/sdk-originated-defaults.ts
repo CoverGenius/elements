@@ -60,6 +60,10 @@ const sdkOriginatedDefaults: Partial<Record<ThemableVariable, string>> = {
   panelPadding: '0',
   panelSectionGap: '16px',
   panelHeaderGap: '4px',
+  panelBackgroundColor: 'transparent',
+  headerIconSize: '32px',
+  optInBackgroundColor: 'transparent',
+  optOutBackgroundColor: 'transparent',
 };
 
 export { FONT_SIZE_BASE_DEFAULT, sdkOriginatedDefaults };

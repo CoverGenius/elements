@@ -211,7 +211,9 @@ function inlineFile(
 
     consumers.set(cgeVar, consumer);
 
-    return `var(${cgeVar}, ${anchored})`;
+    const parent = parents.get(cgeVar);
+
+    return parent ? `var(${cgeVar}, var(${parent}, ${anchored}))` : `var(${cgeVar}, ${anchored})`;
   });
 
   return { css: inlined, errors };

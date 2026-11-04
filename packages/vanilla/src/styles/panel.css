@@ -5,6 +5,7 @@
   display: flex;
   flex-direction: column;
   padding: var(--cge-panel-padding);
+  background-color: var(--cge-panel-background-color);
   border: var(--cge-panel-border-width) solid var(--cge-panel-border-color);
   border-radius: var(--cge-panel-border-radius);
 }

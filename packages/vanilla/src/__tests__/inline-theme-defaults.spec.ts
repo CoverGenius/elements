@@ -259,6 +259,26 @@ describe('fan-out parents', () => {
     expect(result.css).toBe('.a { color: var(--cge-required-text-color, var(--cge-error-color, #d62b00)); }');
   });
 
+  it('keeps the parent link when the shared default is a rem value', () => {
+    const remDefaults = new Map<string, string>([
+      ['--cge-opt-in-border-radius', '0.25rem'],
+      ['--cge-input-body-border-radius', '0.25rem'],
+    ]);
+    const parents = new Map([['--cge-opt-in-border-radius', '--cge-input-body-border-radius']]);
+    const result = inlineFile(
+      'fixture.css',
+      '.a { border-radius: var(--cge-opt-in-border-radius); }',
+      remDefaults,
+      new Map(),
+      parents,
+    );
+
+    expect(result.errors).toEqual([]);
+    expect(result.css).toBe(
+      '.a { border-radius: var(--cge-opt-in-border-radius, var(--cge-input-body-border-radius, 4px)); }',
+    );
+  });
+
   it('leaves a non fan-out variable as a flat fallback', () => {
     const parents = new Map([['--cge-required-text-color', '--cge-error-color']]);
     const result = inlineFile('fixture.css', '.a { color: var(--cge-error-color); }', defaults, new Map(), parents);
@@ -272,5 +292,7 @@ describe('fan-out parents', () => {
     expect(parents.get('--cge-selection-accent-color')).toBe('--cge-accent-color');
     expect(parents.get('--cge-required-text-color')).toBe('--cge-error-color');
     expect(parents.get('--cge-required-border-color')).toBe('--cge-error-color');
+    expect(parents.get('--cge-opt-in-border-radius')).toBe('--cge-input-body-border-radius');
+    expect(parents.get('--cge-credibility-text-color')).toBe('--cge-primary-text-color');
   });
 });

@@ -65,7 +65,17 @@ describe('SEMANTIC_FAN_OUT', () => {
 
   it('contains exactly the known entries', () => {
     expect(Object.keys(SEMANTIC_FAN_OUT).sort()).toEqual(
-      ['requiredBorderColor', 'requiredTextColor', 'selectionAccentColor'].sort(),
+      [
+        'credibilityTextColor',
+        'optInBorderColor',
+        'optInBorderRadius',
+        'optInBorderWidth',
+        'optOutBorderColor',
+        'optOutBorderRadius',
+        'requiredBorderColor',
+        'requiredTextColor',
+        'selectionAccentColor',
+      ].sort(),
     );
   });
 });

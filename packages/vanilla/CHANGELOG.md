@@ -2,6 +2,14 @@
 
 All notable changes to `@covergenius/elements` are documented here.
 
+## [0.2.9] - 2026-11-04
+
+- fixed: opt-in and opt-out cards, the panel background, the header icon color and size, the credibility text color and the testimonial star color now read their theme variables.
+- changed: optInBorderColor/Width/Radius, optOutBorderColor/Radius and credibilityTextColor follow their master (inputBody\*, primaryTextColor) until set, so an existing inputBody\* theme keeps reaching the cards
+- changed: option cards carry cge-input-option-opt-in / cge-input-option-opt-out classes so each kind reads its own variables
+- fixed: a fan-out child whose shared default is a rem value keeps its parent link in the generated CSS, instead of a flat fallback that would cut inputBodyBorderRadius off from the cards
+- removed: testimonialPanelBorderColor (--cge-testimonial-panel-border-color), which had no element to colour; the rated testimonial border is testimonialRatedBorderColor.
+
 ## [0.2.8] - 2026-11-03
 
 - changed: updated development dependencies (happy-dom 21.0.4, fast-uri 3.1.9) to clear open security advisories.

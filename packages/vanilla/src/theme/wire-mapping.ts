@@ -46,11 +46,11 @@ const WIRE_MAPPING: Record<ThemableVariable, MappingRow> = {
       'Anchor for every text size (font-size is calc(N * this)). Absolute px only, enforced in applyTheme; no gui token, the design system root is a fixed 16px.',
   },
   panelBackgroundColor: {
-    source: '--cge-color-bg-white',
-    outcome: 'semantic',
-    value: coverGeniusDefaults['--cge-color-bg-white'].light,
+    source: null,
+    outcome: 'sdk-originated',
+    value: sdkOriginatedDefaults.panelBackgroundColor ?? 'transparent',
     notes:
-      'Rejected --cge-color-bg-card (#f7f7f7): card bg is for embedded cards; panel (outermost container) uses white.',
+      'Transparent so the panel adopts the host page background. Rejected --cge-color-bg-white: painting white would change every embed on a non-white page; a partner opts into a fill.',
   },
   panelBorderColor: {
     source: null,
@@ -110,10 +110,11 @@ const WIRE_MAPPING: Record<ThemableVariable, MappingRow> = {
     value: coverGeniusDefaults['--cge-color-icon-dark'].light,
   },
   headerIconSize: {
-    source: '--cge-alert-common-icon-lg-size-width-lg',
-    outcome: 'component',
-    value: coverGeniusDefaults['--cge-alert-common-icon-lg-size-width-lg'].light,
-    notes: 'Alert large icon (1.5rem) is the closest match for header icon size.',
+    source: null,
+    outcome: 'sdk-originated',
+    value: sdkOriginatedDefaults.headerIconSize ?? '32px',
+    notes:
+      'Rejected the alert large icon (1.5rem): the header icon has always rendered at 32px, so the default keeps that.',
   },
   inputBodyBorderColor: {
     source: '--cge-color-border-form-input',
@@ -134,45 +135,49 @@ const WIRE_MAPPING: Record<ThemableVariable, MappingRow> = {
       'Rejected the alert-container radius (0.5rem): kept the reviewed prior 0.25rem, matching the gui form-input radius scale.',
   },
   optInBackgroundColor: {
-    source: '--cge-color-bg-white',
-    outcome: 'semantic',
-    value: coverGeniusDefaults['--cge-color-bg-white'].light,
-    notes: 'No opt-in-specific token in gui. White is the standard active/selected card bg.',
+    source: null,
+    outcome: 'sdk-originated',
+    value: sdkOriginatedDefaults.optInBackgroundColor ?? 'transparent',
+    notes:
+      'Transparent: opt-in cards have no fill by default. Rejected --cge-color-bg-white: it would paint cards white on a non-white host page.',
   },
   optInBorderColor: {
-    source: '--cge-color-border-card',
-    outcome: 'semantic',
-    value: coverGeniusDefaults['--cge-color-border-card'].light,
+    source: null,
+    outcome: 'fan-out',
+    value: '',
+    notes: 'Follows inputBodyBorderColor until overridden, so an existing inputBody* theme keeps reaching the cards.',
   },
   optInBorderWidth: {
-    source: '--cge-alert-common-container-border-width-lg',
-    outcome: 'component',
-    value: coverGeniusDefaults['--cge-alert-common-container-border-width-lg'].light,
-    notes:
-      'No action-card border-width token. Alert container border-width (0.0625rem) is the standard container border.',
+    source: null,
+    outcome: 'fan-out',
+    value: '',
+    notes: 'Follows inputBodyBorderWidth until overridden.',
   },
   optInBorderRadius: {
-    source: '--cge-action-card-container-border-radius-lg',
-    outcome: 'component',
-    value: coverGeniusDefaults['--cge-action-card-container-border-radius-lg'].light,
-    notes: 'Opt-in card is structurally an action card.',
+    source: null,
+    outcome: 'fan-out',
+    value: '',
+    notes:
+      'Follows inputBodyBorderRadius until overridden. Rejected the action-card radius (0.75rem): kept the reviewed card radius.',
   },
   optOutBackgroundColor: {
-    source: '--cge-color-bg-light',
-    outcome: 'semantic',
-    value: coverGeniusDefaults['--cge-color-bg-light'].light,
-    notes: 'Muted bg for inactive/deselected state.',
+    source: null,
+    outcome: 'sdk-originated',
+    value: sdkOriginatedDefaults.optOutBackgroundColor ?? 'transparent',
+    notes:
+      'Transparent: opt-out cards have no fill by default. Rejected --cge-color-bg-light: it would grey every opt-out card.',
   },
   optOutBorderColor: {
-    source: '--cge-color-border-light',
-    outcome: 'semantic',
-    value: coverGeniusDefaults['--cge-color-border-light'].light,
+    source: null,
+    outcome: 'fan-out',
+    value: '',
+    notes: 'Follows inputBodyBorderColor until overridden, so an existing inputBody* theme keeps reaching the cards.',
   },
   optOutBorderRadius: {
-    source: '--cge-action-card-container-border-radius-lg',
-    outcome: 'component',
-    value: coverGeniusDefaults['--cge-action-card-container-border-radius-lg'].light,
-    notes: 'Opt-out card is structurally an action card. Same source as optInBorderRadius.',
+    source: null,
+    outcome: 'fan-out',
+    value: '',
+    notes: 'Follows inputBodyBorderRadius until overridden.',
   },
   selectionAccentColor: {
     source: null,
@@ -317,22 +322,17 @@ const WIRE_MAPPING: Record<ThemableVariable, MappingRow> = {
       'Required (error) state option border. Fans out to errorColor via SEMANTIC_FAN_OUT. Distinct from requiredPanelBorderColor, the resting panel border.',
   },
   credibilityTextColor: {
-    source: '--cge-color-typography-light',
-    outcome: 'semantic',
-    value: coverGeniusDefaults['--cge-color-typography-light'].light,
-    notes: 'Credibility message text color.',
+    source: null,
+    outcome: 'fan-out',
+    value: '',
+    notes:
+      'Follows primaryTextColor until overridden: the credibility text has always rendered in the primary text colour.',
   },
   testimonialPanelBackgroundColor: {
     source: null,
     outcome: 'sdk-originated',
     value: sdkOriginatedDefaults.testimonialPanelBackgroundColor ?? '#A7D7A7',
     notes: 'Rejected --cge-color-bg-white: kept the reviewed prior soft green background.',
-  },
-  testimonialPanelBorderColor: {
-    source: '--cge-color-border-card',
-    outcome: 'semantic',
-    value: coverGeniusDefaults['--cge-color-border-card'].light,
-    notes: 'Testimonial panel card border.',
   },
   testimonialPanelStarColor: {
     source: null,

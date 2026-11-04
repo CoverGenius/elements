@@ -52,7 +52,6 @@ const THEMABLE_VARIABLES = {
   requiredBorderColor: '--cge-required-border-color',
   credibilityTextColor: '--cge-credibility-text-color',
   testimonialPanelBackgroundColor: '--cge-testimonial-panel-background-color',
-  testimonialPanelBorderColor: '--cge-testimonial-panel-border-color',
   testimonialPanelStarColor: '--cge-testimonial-panel-star-color',
   disclaimerColor: '--cge-disclaimer-color',
   disclaimerSize: '--cge-disclaimer-size',
@@ -101,6 +100,12 @@ const SEMANTIC_FAN_OUT = {
   selectionAccentColor: 'accentColor',
   requiredTextColor: 'errorColor',
   requiredBorderColor: 'errorColor',
+  optInBorderColor: 'inputBodyBorderColor',
+  optInBorderWidth: 'inputBodyBorderWidth',
+  optInBorderRadius: 'inputBodyBorderRadius',
+  optOutBorderColor: 'inputBodyBorderColor',
+  optOutBorderRadius: 'inputBodyBorderRadius',
+  credibilityTextColor: 'primaryTextColor',
 } as const satisfies Partial<Record<ThemableVariable, ThemableVariable>>;
 
 type SemanticFanOutVariable = keyof typeof SEMANTIC_FAN_OUT;

@@ -12,6 +12,6 @@
 .cge-sales-count-text {
   font-size: calc(0.875 * var(--cge-font-size-base));
   font-weight: 500;
-  color: var(--cge-primary-text-color);
+  color: var(--cge-credibility-text-color);
   line-height: 125%;
 }

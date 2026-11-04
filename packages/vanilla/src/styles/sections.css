@@ -18,9 +18,10 @@
   margin-left: 8px;
 }
 .cge-header-row .cge-icon {
-  width: 32px;
-  height: 32px;
-  min-width: 32px;
+  width: var(--cge-header-icon-size);
+  height: var(--cge-header-icon-size);
+  min-width: var(--cge-header-icon-size);
+  color: var(--cge-header-icon-color);
   flex-shrink: 0;
   align-self: flex-start;
 }
@@ -109,6 +110,17 @@
   padding: 16px;
   border: var(--cge-input-body-border-width) solid var(--cge-input-body-border-color);
   border-radius: var(--cge-input-body-border-radius);
+}
+.cge-input-option-opt-in {
+  background-color: var(--cge-opt-in-background-color);
+  border-color: var(--cge-opt-in-border-color);
+  border-width: var(--cge-opt-in-border-width);
+  border-radius: var(--cge-opt-in-border-radius);
+}
+.cge-input-option-opt-out {
+  background-color: var(--cge-opt-out-background-color);
+  border-color: var(--cge-opt-out-border-color);
+  border-radius: var(--cge-opt-out-border-radius);
 }
 .cge-input-option:has(.cge-price-label) {
   padding-top: 24px;

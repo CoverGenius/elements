@@ -17,6 +17,23 @@ function option(overrides: Partial<InputBodyOption> = {}): InputBodyOption {
 }
 
 describe('buildInputBody', () => {
+  it('marks opt-in options and the decline with their kind so each reads its own theme variables', () => {
+    // Arrange
+    const config = {
+      options: [option(), option({ optionId: 'opt_out', value: 'decline', productIds: [], decline: true })],
+    };
+
+    // Act
+    const el = buildInputBody(config);
+    const [optIn, optOut] = Array.from(el.querySelectorAll('.cge-input-option'));
+
+    // Assert
+    expect(optIn.classList.contains('cge-input-option-opt-in')).toBe(true);
+    expect(optIn.classList.contains('cge-input-option-opt-out')).toBe(false);
+    expect(optOut.classList.contains('cge-input-option-opt-out')).toBe(true);
+    expect(optOut.classList.contains('cge-input-option-opt-in')).toBe(false);
+  });
+
   it('renders a section element with class cge-section cge-section-input-body', () => {
     // Arrange
     const config = { options: [option()] };

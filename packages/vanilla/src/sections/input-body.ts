@@ -159,7 +159,7 @@ function buildOption(
   selectionLocation: InputBodySelectionLocation,
 ): HTMLElement {
   const panel = document.createElement('div');
-  const classes = ['cge-input-option'];
+  const classes = ['cge-input-option', opt.decline ? 'cge-input-option-opt-out' : 'cge-input-option-opt-in'];
   if (opt.checked) classes.push('cge-input-option-selected');
   if (opt.error) classes.push('cge-input-option-error');
   if (opt.collapsed) classes.push('cge-input-option-collapsed');
