@@ -6,7 +6,7 @@ import type { LayoutNode } from '../resolver/layout';
 import type { OfferResponse, Product } from '../shared/types';
 
 function ctx(debug = false) {
-  return resolveContext({ environment: 'sandbox', debug });
+  return resolveContext({ environment: 'develop', debug });
 }
 
 /**

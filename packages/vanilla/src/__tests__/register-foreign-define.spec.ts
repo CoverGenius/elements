@@ -19,7 +19,7 @@ describe('registerElements when <cg-elements> is already defined elsewhere', () 
 
     customElements.define(DEFAULT_TAG_NAME, class extends HTMLElement {});
 
-    expect(() => registerElements({ environment: 'sandbox' })).not.toThrow();
+    expect(() => registerElements({ environment: 'develop' })).not.toThrow();
     expect(hasContext(DEFAULT_TAG_NAME)).toBe(false);
     expect(getElement()).toBeUndefined();
   });

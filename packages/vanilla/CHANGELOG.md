@@ -2,6 +2,11 @@
 
 All notable changes to `@covergenius/elements` are documented here.
 
+## [0.3.0] - 2026-11-04
+
+- changed: the `environment` option of `registerElements()` accepts `production`, `uat` and `develop`, matching the Offers API environment names; `production` stays the default
+- removed: the `staging` and `sandbox` environment values. This is a breaking change: `registerElements()` now throws `Unknown environment "x". Use one of: production, uat, develop.` for any other value. Replace `staging` with `uat` and `sandbox` with `develop`
+
 ## [0.2.9] - 2026-11-04
 
 - fixed: opt-in and opt-out cards, the panel background, the header icon color and size, the credibility text color and the testimonial star color now read their theme variables.

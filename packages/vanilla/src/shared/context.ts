@@ -12,7 +12,7 @@ export interface CurrencyFormatter {
 }
 
 export interface SdkContext {
-  readonly environment: 'production' | 'staging' | 'sandbox';
+  readonly environment: 'production' | 'uat' | 'develop';
   readonly endpoints: { readonly telemetry: string; readonly assetBase: string };
   readonly currency: CurrencyFormatter;
   readonly logger: Logger;
@@ -22,8 +22,8 @@ export interface SdkContext {
 
 const ENDPOINTS: Record<SdkContext['environment'], SdkContext['endpoints']> = {
   production: { telemetry: '', assetBase: '' },
-  staging: { telemetry: '', assetBase: '' },
-  sandbox: { telemetry: '', assetBase: '' },
+  uat: { telemetry: '', assetBase: '' },
+  develop: { telemetry: '', assetBase: '' },
 };
 
 function makeLogger(debug: boolean): Logger {
@@ -49,6 +49,12 @@ function makeCurrencyFormatter(config?: CurrencyFormatOptions): CurrencyFormatte
 
 export function resolveContext(config: RegisterElementsConfig): SdkContext {
   const environment = config.environment ?? 'production';
+
+  if (!Object.hasOwn(ENDPOINTS, environment)) {
+    throw new Error(
+      `[cg-elements] Unknown environment ${JSON.stringify(environment)}. Use one of: ${Object.keys(ENDPOINTS).join(', ')}.`,
+    );
+  }
 
   return Object.freeze({
     environment,

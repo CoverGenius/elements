@@ -201,7 +201,7 @@ describe('attach path: render() into the open shadow root', () => {
 
   beforeEach(() => {
     document.body.innerHTML = '';
-    setContext(DEFAULT_TAG_NAME, resolveContext({ environment: 'sandbox', debug: true }));
+    setContext(DEFAULT_TAG_NAME, resolveContext({ environment: 'develop', debug: true }));
     for (const section of SECTION_ORDER) {
       registerBuilder(section, 'default', createMockBuilder(section));
     }
@@ -312,7 +312,7 @@ describe('interaction: click path through the shadow root', () => {
 
   beforeEach(() => {
     document.body.innerHTML = '';
-    setContext(DEFAULT_TAG_NAME, resolveContext({ environment: 'sandbox', debug: true }));
+    setContext(DEFAULT_TAG_NAME, resolveContext({ environment: 'develop', debug: true }));
     for (const section of SECTION_ORDER) {
       registerBuilder(section, 'default', createMockBuilder(section));
     }

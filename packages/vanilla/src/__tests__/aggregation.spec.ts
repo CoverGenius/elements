@@ -4,7 +4,7 @@ import { groupProducts, sumGroupPremium, sumGroupPremiumAmount, type ProductGrou
 import type { Product } from '../shared/types';
 
 function ctx(debug = false) {
-  return resolveContext({ environment: 'sandbox', debug });
+  return resolveContext({ environment: 'develop', debug });
 }
 
 function product(id: string, configId?: string, amount?: number): Product {

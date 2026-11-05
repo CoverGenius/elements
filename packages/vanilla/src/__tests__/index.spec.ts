@@ -14,7 +14,7 @@ describe('registerElements / getElement', () => {
 
   it('returns a client (not the DOM node) with no ref', () => {
     document.body.innerHTML = '<cg-elements></cg-elements>';
-    registerElements({ environment: 'sandbox' });
+    registerElements({ environment: 'develop' });
 
     const client = getElement();
 
@@ -25,13 +25,13 @@ describe('registerElements / getElement', () => {
 
   it('returns a client for a specific data-presentation-ref', () => {
     document.body.innerHTML = '<cg-elements data-presentation-ref="checkout-primary"></cg-elements>';
-    registerElements({ environment: 'sandbox' });
+    registerElements({ environment: 'develop' });
 
     expect(typeof getElement('checkout-primary')?.render).toBe('function');
   });
 
   it('does not throw when no matching element is in the DOM (lazy binding)', () => {
-    registerElements({ environment: 'sandbox' });
+    registerElements({ environment: 'develop' });
 
     expect(() => getElement('missing')).not.toThrow();
   });
@@ -49,7 +49,7 @@ describe('registerElements idempotency', () => {
     // registerElements() call: the element class can only be defined once per
     // registry, and the earlier tests in this file already defined it.
     const debugSpy = vi.spyOn(console, 'debug').mockImplementation(() => {});
-    const first = resolveContext({ environment: 'sandbox', debug: true });
+    const first = resolveContext({ environment: 'develop', debug: true });
 
     setContext(DEFAULT_TAG_NAME, first);
     registerElements({ environment: 'production' });
@@ -61,7 +61,7 @@ describe('registerElements idempotency', () => {
   it('a ref is addressed independently of the default placement', () => {
     // getElement() reads SDK state only, so a client for a ref resolves without
     // any element in the DOM and independently of the default (tag-name) key.
-    setContext(DEFAULT_TAG_NAME, resolveContext({ environment: 'sandbox' }));
+    setContext(DEFAULT_TAG_NAME, resolveContext({ environment: 'develop' }));
 
     const byRef = getElement('foo');
     const byDefault = getElement();
@@ -72,9 +72,9 @@ describe('registerElements idempotency', () => {
 
   it('no longer accepts tagName or nonce in the config', () => {
     // @ts-expect-error tagName is not part of RegisterElementsConfig
-    const withTagName = () => registerElements({ environment: 'sandbox', tagName: 'x-elements' });
+    const withTagName = () => registerElements({ environment: 'develop', tagName: 'x-elements' });
     // @ts-expect-error nonce is not part of RegisterElementsConfig
-    const withNonce = () => registerElements({ environment: 'sandbox', nonce: 'abc' });
+    const withNonce = () => registerElements({ environment: 'develop', nonce: 'abc' });
 
     expect(typeof withTagName).toBe('function');
     expect(typeof withNonce).toBe('function');

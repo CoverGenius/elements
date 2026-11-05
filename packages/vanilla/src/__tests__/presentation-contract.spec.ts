@@ -22,7 +22,7 @@ import type { OfferResponse } from '../shared/types';
  * closed-vocabulary node, not a one-off regression test.
  */
 
-const ctx = () => resolveContext({ environment: 'sandbox', debug: false });
+const ctx = () => resolveContext({ environment: 'develop', debug: false });
 
 function offer(
   layout: unknown,

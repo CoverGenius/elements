@@ -59,12 +59,12 @@ cgElement.render(offerResponse);
 
 **`RegisterElementsConfig`**
 
-| Field            | Optional | Purpose                                                                                                                                      |
-| ---------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| `environment`    | no       | `'production'`, `'staging'` or `'sandbox'`. Defaults to `'production'`. All three behave the same today. No offer network calls happen here. |
-| `currencyConfig` | yes      | Currency formatting config applied by the engine.                                                                                            |
-| `debug`          | yes      | Enables SDK logging.                                                                                                                         |
-| `scheme`         | yes      | `'light'` or `'dark'`. Defaults to `'light'`.                                                                                                |
+| Field            | Optional | Purpose                                                                                                                                  |
+| ---------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `environment`    | no       | `'production'`, `'uat'` or `'develop'`. Defaults to `'production'`. All three behave the same today. No offer network calls happen here. |
+| `currencyConfig` | yes      | Currency formatting config applied by the engine.                                                                                        |
+| `debug`          | yes      | Enables SDK logging.                                                                                                                     |
+| `scheme`         | yes      | `'light'` or `'dark'`. Defaults to `'light'`.                                                                                            |
 
 **Instance client** (returned by `getElement`, or `undefined` before `registerElements` has run)
 

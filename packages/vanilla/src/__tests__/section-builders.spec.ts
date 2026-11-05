@@ -10,7 +10,7 @@ import { bottomBodyBuilder } from '../resolver/builders/bottom-body';
 import { footerBuilder } from '../resolver/builders/footer';
 import { resolveIconName } from '../resolver/theme-icons';
 
-const ctx = () => resolveContext({ environment: 'sandbox' });
+const ctx = () => resolveContext({ environment: 'develop' });
 
 function args<const TNode extends LayoutNode>(
   node: TNode,

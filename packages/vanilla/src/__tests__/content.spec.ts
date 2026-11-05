@@ -4,7 +4,7 @@ import { resolveContent } from '../resolver/content';
 import type { ContentScope, OfferLevelContent, ProductContent } from '../resolver/content-types';
 
 function ctx(debug = false) {
-  return resolveContext({ environment: 'sandbox', debug });
+  return resolveContext({ environment: 'develop', debug });
 }
 
 function offerScope(content: OfferLevelContent): ContentScope {

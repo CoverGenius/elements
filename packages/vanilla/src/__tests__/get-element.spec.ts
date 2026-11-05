@@ -41,7 +41,7 @@ const renderableOffer = (): OfferResponse =>
 // upgraded element seed the context with register() and create the element.
 
 function register() {
-  setContext(DEFAULT_TAG_NAME, resolveContext({ environment: 'sandbox' }));
+  setContext(DEFAULT_TAG_NAME, resolveContext({ environment: 'develop' }));
 }
 
 afterEach(() => {
@@ -141,7 +141,7 @@ describe('getElement: selection through the public client', () => {
 describe('getElement: selection.required reflects onto a mounted element', () => {
   it('reflects the required flag onto the element via the client', () => {
     document.body.innerHTML = '';
-    registerElements({ environment: 'sandbox' });
+    registerElements({ environment: 'develop' });
     const client = getElement('sel-required');
     const el = document.createElement(DEFAULT_TAG_NAME);
     el.setAttribute('data-presentation-ref', 'sel-required');

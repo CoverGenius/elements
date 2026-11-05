@@ -7,7 +7,7 @@ import type { BuildArgs, NodeBuilder } from '../resolver/builder';
 import type { BoundContent } from '../resolver/binding';
 import type { OfferResponse } from '../shared/types';
 
-const ctx = () => resolveContext({ environment: 'sandbox', debug: true });
+const ctx = () => resolveContext({ environment: 'develop', debug: true });
 
 const captured: Record<string, Record<string, BoundContent> | undefined> = {};
 

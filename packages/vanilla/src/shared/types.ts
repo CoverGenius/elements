@@ -12,7 +12,7 @@ export interface ThemeProfile {
 }
 
 export interface RegisterElementsConfig {
-  environment: 'production' | 'staging' | 'sandbox';
+  environment: 'production' | 'uat' | 'develop';
   currencyConfig?: CurrencyFormatOptions;
   debug?: boolean;
   scheme?: Scheme;

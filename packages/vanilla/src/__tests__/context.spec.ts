@@ -13,16 +13,16 @@ describe('resolveContext', () => {
   });
 
   it('freezes the returned context', () => {
-    const context = resolveContext({ environment: 'sandbox' });
+    const context = resolveContext({ environment: 'develop' });
 
     expect(Object.isFrozen(context)).toBe(true);
 
     expect(() => {
       'use strict';
       // @ts-expect-error assigning to a readonly/frozen property to assert the mutation is rejected
-      context.environment = 'staging';
+      context.environment = 'uat';
     }).toThrow();
-    expect(context.environment).toBe('sandbox');
+    expect(context.environment).toBe('develop');
   });
 
   it('does not log to console when debug is omitted', () => {
@@ -76,11 +76,16 @@ describe('resolveContext', () => {
     expect(Object.keys(context).sort()).toEqual(['currency', 'debug', 'endpoints', 'environment', 'logger', 'scheme']);
   });
 
-  it.each(['staging', 'sandbox', 'production'] as const)('resolves endpoints for %s environment', (environment) => {
+  it.each(['uat', 'develop', 'production'] as const)('resolves endpoints for %s environment', (environment) => {
     const context = resolveContext({ environment });
 
     expect(context.endpoints).toHaveProperty('telemetry');
     expect(context.endpoints).toHaveProperty('assetBase');
+  });
+
+  it('rejects an environment value that is not production, uat or develop', () => {
+    // @ts-expect-error an unsupported value on purpose
+    expect(() => resolveContext({ environment: 'qa' })).toThrow(/Use one of: production, uat, develop/);
   });
 
   it('gives each context its own endpoints object, not a shared reference', () => {

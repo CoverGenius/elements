@@ -7,7 +7,7 @@ import { CG_DATASET, CG_ROLE } from '../shared/attributes';
 import type { BuildArgs, NodeBuilder } from '../resolver/builder';
 import type { OfferResponse, Product, ProductRule } from '../shared/types';
 
-const ctx = () => resolveContext({ environment: 'sandbox', debug: true });
+const ctx = () => resolveContext({ environment: 'develop', debug: true });
 
 let capturedArgs: Record<string, BuildArgs> = {};
 

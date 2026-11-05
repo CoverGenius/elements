@@ -25,7 +25,7 @@ describe('registry', () => {
   it('isRegistered is false until a context is set for the element tag', () => {
     expect(isRegistered()).toBe(false);
 
-    setContext(DEFAULT_TAG_NAME, resolveContext({ environment: 'sandbox' }));
+    setContext(DEFAULT_TAG_NAME, resolveContext({ environment: 'develop' }));
 
     expect(isRegistered()).toBe(true);
   });
@@ -35,14 +35,14 @@ describe('registry', () => {
   });
 
   it('hasContext is true after setContext', () => {
-    const context = resolveContext({ environment: 'sandbox' });
+    const context = resolveContext({ environment: 'develop' });
     setContext('cg-elements-registry-test', context);
 
     expect(hasContext('cg-elements-registry-test')).toBe(true);
   });
 
   it('getContext round-trips the exact same context object', () => {
-    const context = resolveContext({ environment: 'sandbox' });
+    const context = resolveContext({ environment: 'develop' });
     setContext('cg-elements-registry-roundtrip', context);
 
     expect(getContext('cg-elements-registry-roundtrip')).toBe(context);

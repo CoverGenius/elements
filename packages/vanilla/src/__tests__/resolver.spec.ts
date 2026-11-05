@@ -7,7 +7,7 @@ import { SECTION_ORDER } from '../resolver/layout';
 import type { BuildArgs } from '../resolver/builder';
 import type { OfferResponse } from '../shared/types';
 
-const ctx = () => resolveContext({ environment: 'sandbox', debug: true });
+const ctx = () => resolveContext({ environment: 'develop', debug: true });
 
 function offer(presentation: unknown): OfferResponse {
   return {

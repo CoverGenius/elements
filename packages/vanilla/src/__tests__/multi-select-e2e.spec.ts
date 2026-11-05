@@ -62,7 +62,7 @@ const inputs = (el: Element) => q(el, 'input') as HTMLInputElement[];
 
 beforeEach(() => {
   document.body.innerHTML = '';
-  setContext(DEFAULT_TAG_NAME, resolveContext({ environment: 'sandbox', debug: true }));
+  setContext(DEFAULT_TAG_NAME, resolveContext({ environment: 'develop', debug: true }));
   registerSectionBuilders();
 });
 

@@ -8,7 +8,7 @@ import type { LayoutNode } from '../resolver/layout';
 import type { OfferResponse, Product } from '../shared/types';
 import { CG_ATTR, CG_ROLE } from '../shared/attributes';
 
-const ctx = () => resolveContext({ environment: 'sandbox' });
+const ctx = () => resolveContext({ environment: 'develop' });
 
 function quote(id: string, configId?: string, amount?: number, pdsUrl?: string): Product {
   const details: Record<string, unknown> = {};

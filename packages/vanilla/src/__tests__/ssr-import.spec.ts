@@ -42,14 +42,14 @@ describe('server-side import safety (no DOM globals)', () => {
   it('registerElements() is a no-op and does not throw', async () => {
     const { registerElements } = await loadFresh();
 
-    expect(() => registerElements({ environment: 'sandbox' })).not.toThrow();
+    expect(() => registerElements({ environment: 'develop' })).not.toThrow();
     expect(() => registerElements()).not.toThrow();
   });
 
   it('registerElements() records no module state, so nothing leaks across server requests', async () => {
     const { registerElements, registry } = await loadFresh();
 
-    registerElements({ environment: 'sandbox' });
+    registerElements({ environment: 'develop' });
 
     expect(registry.isRegistered()).toBe(false);
     expect(registry.hasContext(registry.DEFAULT_TAG_NAME)).toBe(false);
@@ -58,7 +58,7 @@ describe('server-side import safety (no DOM globals)', () => {
   it('getElement() returns undefined, with and without a ref', async () => {
     const { registerElements, getElement } = await loadFresh();
 
-    registerElements({ environment: 'sandbox' });
+    registerElements({ environment: 'develop' });
 
     expect(getElement()).toBeUndefined();
     expect(getElement('checkout-primary')).toBeUndefined();
@@ -69,7 +69,7 @@ describe('server-side import safety (no DOM globals)', () => {
 
     const { registerElements, getElement, registry } = await loadFresh();
 
-    expect(() => registerElements({ environment: 'sandbox' })).not.toThrow();
+    expect(() => registerElements({ environment: 'develop' })).not.toThrow();
     expect(registry.isRegistered()).toBe(false);
     expect(getElement()).toBeUndefined();
   });

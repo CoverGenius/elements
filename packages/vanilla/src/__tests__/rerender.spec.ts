@@ -58,7 +58,7 @@ function selectOption(el: Element, index: number): void {
 
 beforeEach(() => {
   document.body.innerHTML = '';
-  setContext(DEFAULT_TAG_NAME, resolveContext({ environment: 'sandbox', debug: true }));
+  setContext(DEFAULT_TAG_NAME, resolveContext({ environment: 'develop', debug: true }));
   for (const section of SECTION_ORDER) {
     registerBuilder(section, 'default', createMockBuilder(section));
   }
@@ -389,7 +389,7 @@ describe('re-render: debug logging', () => {
   });
 
   it('stays silent with debug off', () => {
-    setContext(DEFAULT_TAG_NAME, resolveContext({ environment: 'sandbox', debug: false }));
+    setContext(DEFAULT_TAG_NAME, resolveContext({ environment: 'develop', debug: false }));
     const spy = vi.spyOn(console, 'debug').mockImplementation(() => {});
     mount('rr-log-off');
     const client = ensureContainer('rr-log-off').getClient();
